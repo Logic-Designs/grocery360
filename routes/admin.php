@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AboutContentController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminLanguageController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ContactContentController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\HomeContentController;
@@ -53,6 +54,8 @@ Route::middleware('superadmin')->group(function(){
     Route::resource('offers', OfferController::class);
 
     Route::resource('supermarkets', SupermarketController::class);
+
+    Route::resource('articles', ArticleController::class);
 
     Route::get('prices', [PriceController::class, 'index'])->name('prices.index');
     Route::post('prices/upload', [PriceController::class, 'upload'])->name('prices.upload');
