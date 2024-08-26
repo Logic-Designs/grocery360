@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Front\AboutContentController;
 use App\Http\Controllers\Api\Front\AdController;
 use App\Http\Controllers\Api\Front\ArticleController;
 use App\Http\Controllers\Api\Front\CompanyController;
+use App\Http\Controllers\Api\Front\ContactController;
 use App\Http\Controllers\Api\Front\HomeContentController;
 use App\Http\Controllers\Api\Front\OfferController;
 use App\Http\Controllers\Api\Front\PriceController;
@@ -36,6 +37,7 @@ Route::get('companies', [CompanyController::class, 'index']);
 Route::get('companies/{id}', [CompanyController::class, 'show']);
 Route::get('/ads', [AdController::class, 'index']);
 Route::get('/prices', [PriceController::class, 'index']);
+Route::post('/contacts', [ContactController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
