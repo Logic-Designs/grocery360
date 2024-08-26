@@ -15,7 +15,8 @@
                 <div class="btn-list">
                     @if($back)
                     <span class="d-none d-sm-inline">
-                        <a href="{{ route('admin.'.$name.'.index') }}" class="btn btn-white">
+                        @php $route = isset($id)? route('admin.'.$name.'.index', $id):route('admin.'.$name.'.index'); @endphp
+                        <a href="{{ $route }}" class="btn btn-white">
                             @lang('admin.Back')
                         </a>
                     </span>

@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\AboutContentController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminLanguageController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\CompanyCategoryController;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\CompanyItemController;
 use App\Http\Controllers\Admin\ContactContentController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\HomeContentController;
@@ -56,6 +59,15 @@ Route::middleware('superadmin')->group(function(){
     Route::resource('supermarkets', SupermarketController::class);
 
     Route::resource('articles', ArticleController::class);
+
+    Route::resource('companies', CompanyController::class);
+    Route::resource('company_categories', CompanyCategoryController::class);
+
+    Route::get('companies/{companyId}/items', [CompanyItemController::class, 'index'])->name('company_items.index');
+    Route::post('companies/{companyId}/items', [CompanyItemController::class, 'store'])->name('company_items.store');
+    Route::get('companies/items/{id}/edit', [CompanyItemController::class, 'edit'])->name('company_items.edit');
+    Route::put('companies/items/{id}', [CompanyItemController::class, 'update'])->name('company_items.update');
+    Route::delete('companies/items/{id}', [CompanyItemController::class, 'destroy'])->name('company_items.destroy');
 
     Route::get('prices', [PriceController::class, 'index'])->name('prices.index');
     Route::post('prices/upload', [PriceController::class, 'upload'])->name('prices.upload');

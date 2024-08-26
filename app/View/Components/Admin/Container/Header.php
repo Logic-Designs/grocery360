@@ -11,17 +11,19 @@ class Header extends Component
     public $name;
     public $back;
     public $model;
+    public $id;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title, $name = null, $back = null, $model = null)
+    public function __construct($title, $name = null, $back = null, $model = null, $id = null)
     {
         $this->title = $title;
         $this->name = $name;
         $this->back = $back;
         $this->model = $model;
+        $this->id = $id;
     }
 
     /**

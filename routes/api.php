@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Front\AboutContentController;
 use App\Http\Controllers\Api\Front\ArticleController;
+use App\Http\Controllers\Api\Front\CompanyController;
 use App\Http\Controllers\Api\Front\HomeContentController;
 use App\Http\Controllers\Api\Front\OfferController;
 use App\Http\Controllers\Api\Front\SettingController;
@@ -29,6 +30,8 @@ Route::get('/supermarkets', [SupermarketController::class, 'index']);
 Route::get('/supermarkets/{id}', [SupermarketController::class, 'show']);
 Route::get('articles', [ArticleController::class, 'index']);
 Route::get('articles/{id}', [ArticleController::class, 'show']);
+Route::get('companies', [CompanyController::class, 'index']);
+Route::get('companies/{id}', [CompanyController::class, 'show']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
