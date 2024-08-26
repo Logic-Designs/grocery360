@@ -15,7 +15,7 @@ class PriceController extends Controller
 
         return Response::success(
             $prices,
-            'About Content retrieved successfully'
+            'Prices retrieved successfully'
         );
     }
 }
