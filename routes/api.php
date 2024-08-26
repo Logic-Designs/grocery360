@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Front\AboutContentController;
 use App\Http\Controllers\Api\Front\AdController;
 use App\Http\Controllers\Api\Front\ArticleController;
+use App\Http\Controllers\Api\Front\AuthController;
 use App\Http\Controllers\Api\Front\CompanyController;
 use App\Http\Controllers\Api\Front\ContactController;
 use App\Http\Controllers\Api\Front\HomeContentController;
@@ -38,6 +39,13 @@ Route::get('companies/{id}', [CompanyController::class, 'show']);
 Route::get('/ads', [AdController::class, 'index']);
 Route::get('/prices', [PriceController::class, 'index']);
 Route::post('/contacts', [ContactController::class, 'store']);
+
+Route::post('/register', [AuthController::class, 'register']);
+
+// User login
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

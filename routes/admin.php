@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SupermarketController;
+use App\Http\Controllers\Admin\UserController;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
@@ -75,6 +76,9 @@ Route::middleware('superadmin')->group(function(){
 
     Route::get('ads', [AdController::class, 'index'])->name('ads.index');
     Route::post('ads', [AdController::class, 'update'])->name('ads.update');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
     if(0){
 
