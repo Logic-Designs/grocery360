@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Front\ArticleController;
 use App\Http\Controllers\Api\Front\CompanyController;
 use App\Http\Controllers\Api\Front\HomeContentController;
 use App\Http\Controllers\Api\Front\OfferController;
+use App\Http\Controllers\Api\Front\PriceController;
 use App\Http\Controllers\Api\Front\SettingController;
 use App\Http\Controllers\Api\Front\SupermarketController;
 /*
@@ -34,6 +35,7 @@ Route::get('articles/{id}', [ArticleController::class, 'show']);
 Route::get('companies', [CompanyController::class, 'index']);
 Route::get('companies/{id}', [CompanyController::class, 'show']);
 Route::get('/ads', [AdController::class, 'index']);
+Route::get('/prices', [PriceController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

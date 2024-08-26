@@ -9,15 +9,6 @@ class ProductPrice extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'shop_id', 'price'];
+    protected $fillable = ['prices'];
 
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
-
-    public function shop()
-    {
-        return $this->belongsTo(Shop::class);
-    }
 }

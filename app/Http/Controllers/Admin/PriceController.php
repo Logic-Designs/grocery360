@@ -4,20 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Imports\ProductPricesImport;
-use App\Models\Category;
-use App\Models\Product;
 use App\Models\ProductPrice;
-use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PriceController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category', 'prices.shop')->get();
-        return view('admin.prices.index', compact('products'));
+        $prices = ProductPrice::first();
+        $prices = $prices?json_decode($prices['prices'], true): [];
+
+        return view('admin.prices.index', compact('prices'));
     }
 
 
@@ -27,20 +27,28 @@ class PriceController extends Controller
             'price_file' => 'required|mimes:xlsx,xls,csv',
         ]);
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        try {
+            Excel::import(new ProductPricesImport, $request->file('price_file'));
+            return redirect()->route('admin.prices.index')->with('success', 'Prices updated successfully.');
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors(['price_file' => $e->getMessage()]);
+        }
+    }
 
-        // Truncate all tables
-        ProductPrice::truncate();
-        Product::truncate();
-        Category::truncate();
-        Shop::truncate();
+    function objectToArray($object) {
+        // Check if the input is an object
+        if (is_object($object)) {
+            // Convert the object to an array
+            $object = (array) $object;
+        }
 
-        // Re-enable foreign key checks
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
-        // Import new data from the Excel file
-        Excel::import(new ProductPricesImport, $request->file('price_file'));
-
-        return redirect()->route('admin.prices.index')->with('success', 'Prices updated successfully.');
+        // Check if the input is an array
+        if (is_array($object)) {
+            // Recursively convert array items
+            return array_map('objectToArray', $object);
+        } else {
+            // Return the non-array value
+            return $object;
+        }
     }
 }
