@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutContentController;
+use App\Http\Controllers\Admin\AdController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminLanguageController;
 use App\Http\Controllers\Admin\ArticleController;
@@ -71,6 +72,9 @@ Route::middleware('superadmin')->group(function(){
 
     Route::get('prices', [PriceController::class, 'index'])->name('prices.index');
     Route::post('prices/upload', [PriceController::class, 'upload'])->name('prices.upload');
+
+    Route::get('ads', [AdController::class, 'index'])->name('ads.index');
+    Route::post('ads', [AdController::class, 'update'])->name('ads.update');
 
     if(0){
 

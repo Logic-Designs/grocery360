@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Front\AboutContentController;
+use App\Http\Controllers\Api\Front\AdController;
 use App\Http\Controllers\Api\Front\ArticleController;
 use App\Http\Controllers\Api\Front\CompanyController;
 use App\Http\Controllers\Api\Front\HomeContentController;
@@ -32,6 +33,7 @@ Route::get('articles', [ArticleController::class, 'index']);
 Route::get('articles/{id}', [ArticleController::class, 'show']);
 Route::get('companies', [CompanyController::class, 'index']);
 Route::get('companies/{id}', [CompanyController::class, 'show']);
+Route::get('/ads', [AdController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
