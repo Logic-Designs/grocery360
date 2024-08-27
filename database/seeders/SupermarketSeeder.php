@@ -25,7 +25,7 @@ class SupermarketSeeder extends Seeder
                 'description' => $description, // Using a predefined description
                 'logo' => 'images/seeder/photo (' . rand(1, 18) . ').jpg', // Random logo path
                 'image' => 'images/seeder/photo (' . rand(1, 18) . ').jpg', // Random image path
-                'pdf' => 'pdfs/seeder/PorshtalProposal (1).pdf', // Random PDF path
+                'pdf' => 'pdfs/PorshtalProposal (1).pdf', // Random PDF path
                 'address' => '123 Main St, City ' . $i,
                 'map' => 'https://maps.example.com/' . Str::random(10), // Random map URL
             ]);
